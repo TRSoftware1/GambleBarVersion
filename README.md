@@ -22,7 +22,7 @@
 - Custom model data support for GambleBar Drinks. An example texture pack using custom models (1-7) can be [downloaded here.](https://drive.google.com/file/d/1OyHlkO54rCZIZk66_AYgTO_7o3gA3F1d/view?usp=share_link)
 - PlayerPoints support. Each bar can use either Vault or PlayerPoints for its drinks.
 
-![Feature List](https://i.imgur.com/KgOIRwb.png)
+![Feature List](https://i.imgur.com/z3tPNRH.png)
 
 ![Commands](https://i.imgur.com/X2goPrL.png)
 
