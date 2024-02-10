@@ -671,7 +671,7 @@ GambleBarPro requires that you have either the Vault plugin or PlayerPoints inst
 
 ![Compatibility](https://i.imgur.com/rORu9Yw.png)
 
-In order for this plugin to work correctly, you must be using Java Version 11+ and using one of the following minecraft server versions
+In order for this plugin to work correctly, you must be using Java Version 17+ and using one of the following minecraft server versions
 
 - 1.8.3
 - 1.8.8
