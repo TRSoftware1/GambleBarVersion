@@ -20,6 +20,7 @@
 - Configure third possible outcome, "Super lucky wins". Has its own odds of happening, own financial and command rewards.
 - Command auto-tab completions.
 - Custom model data support for GambleBar Drinks. An example texture pack using custom models (1-7) can be [downloaded here.](https://drive.google.com/file/d/1OyHlkO54rCZIZk66_AYgTO_7o3gA3F1d/view?usp=share_link)
+- PlayerPoints support. Each bar can use either Vault or PlayerPoints for its drinks.
 
 ![Feature List](https://i.imgur.com/KgOIRwb.png)
 
@@ -50,7 +51,7 @@ Commands start with /gamblebar, but /bar and /gamble may be used instead.
 ![Configuration Files](https://i.imgur.com/EktO3iP.png)
 
 ### config.yml
-```# Here are the valid colors for the "potionColor" options for the 1.11 - 1.19 version
+```# Here are the valid colors for the "potionColor" options for the 1.11+ version
 # RED
 # BLUE
 # AQUA
@@ -113,6 +114,10 @@ blacklistWorlds:
 - "world_nether"
 - "test_world"
 
+# This is the default economy plugin bars will use unless specified in the bar's configuration
+# Options: Vault, PlayerPoints
+defaultEconomy: Vault
+
 # The default bar is the bar opened when a player just uses "/bar"
 defaultBar: mainBar
 
@@ -122,6 +127,7 @@ defaultBar: mainBar
 #   <barID>:
 #     title: "Title of the Bar Inventory"
 #     size: 9 (This number must be a multiple of 9. Minimum is 9, Maximum is 54)
+#     economyType: "Vault" (Current options are Vault and PlayerPoints. If not specified, it will use the defaultEconomy)
 #     inventory:
 #       inventorySlotNumber:
 #         name: "Name of the drink"
@@ -144,6 +150,7 @@ bars:
   mainBar:
     title: "&#c90899&lD&#c90885&le&#c90875&lf&#c9085c&la&#c90848&lu&#c90835&ll&#c9081f&lt &#c91208&lB&#c92508&la&#c93808&lr"
     size: 27
+    economyType: Vault
     inventory:
       0:
         name: " "
@@ -200,7 +207,7 @@ bars:
         odds: 50.00
         superLuckyOdds: 5.00
         rewardCommands:
-        - "broadcast &c%player% &fhas won &c$%reward% &ffrom the GambleBar!"
+        - "broadcast &c%player% &fhas won &c$%reward% &ffrom drinking a &c&l%drink%!"
         superLuckyRewardCommands:
         - "broadcast &c%player% &fgot very lucky and won &c$%reward% &ffrom the GambleBar!"
       11:
@@ -354,189 +361,190 @@ bars:
   bar2:
     title: "&c&l2nd Bar"
     size: 18
+    economyType: PlayerPoints
     inventory:
       0:
         name: "&c&lBud Light"
         lore:
         - "&c&lClick to buy for a chance to win!"
-        - "&ePrice: &f$%price%"
-        - "&eReward: &f$%reward%"
+        - "&ePrice: &f%price% &ePlayerPoints"
+        - "&eReward: &f%reward% &ePlayerPoints"
         - "&eOdds of winning: &f%odds%%"
         potionColor: PURPLE
         price: 500
         reward: 1000
         odds: 50.00
         rewardCommands:
-        - "broadcast &c%player% &fhas won &c$%reward% &ffrom the GambleBar!"
+        - "broadcast &c%player% &fhas won &c%reward% &fPlayerPoints from the GambleBar!"
       1:
         name: "&c&lBudweiser"
         lore:
         - "&c&lClick to buy for a chance to win!"
-        - "&ePrice: &f$%price%"
-        - "&eReward: &f$%reward%"
+        - "&ePrice: &f%price% &ePlayerPoints"
+        - "&eReward: &f%reward% &ePlayerPoints"
         - "&eOdds of winning: &f%odds%%"
         potionColor: BLUE
         price: 1000
         reward: 2000
         odds: 50.00
         rewardCommands:
-        - "broadcast &c%player% &fhas won &c$%reward% &ffrom the GambleBar!"
+        - "broadcast &c%player% &fhas won &c%reward% &fPlayerPoints from the GambleBar!"
       2:
         name: "&c&lHeineken"
         lore:
         - "&c&lClick to buy for a chance to win!"
-        - "&ePrice: &f$%price%"
-        - "&eReward: &f$%reward%"
+        - "&ePrice: &f%price% &ePlayerPoints"
+        - "&eReward: &f%reward% &ePlayerPoints"
         - "&eOdds of winning: &f%odds%%"
         potionColor: GRAY
         price: 5000
         reward: 10000
         odds: 50.00
         rewardCommands:
-        - "broadcast &c%player% &fhas won &c$%reward% &ffrom the GambleBar!"
+        - "broadcast &c%player% &fhas won &c%reward% &fPlayerPoints from the GambleBar!"
       3:
         name: "&c&lNatural Light"
         lore:
         - "&c&lClick to buy for a chance to win!"
-        - "&ePrice: &f$%price%"
-        - "&eReward: &f$%reward%"
+        - "&ePrice: &f%price% &ePlayerPoints"
+        - "&eReward: &f%reward% &ePlayerPoints"
         - "&eOdds of winning: &f%odds%%"
         potionColor: AQUA
         price: 10000
         reward: 20000
         odds: 50.00
         rewardCommands:
-        - "broadcast &c%player% &fhas won &c$%reward% &ffrom the GambleBar!"
+        - "broadcast &c%player% &fhas won &c%reward% &fPlayerPoints from the GambleBar!"
       4:
         name: "&c&lWhite Claw"
         lore:
         - "&c&lClick to buy for a chance to win!"
-        - "&ePrice: &f$%price%"
-        - "&eReward: &f$%reward%"
+        - "&ePrice: &f%price% &ePlayerPoints"
+        - "&eReward: &f%reward% &ePlayerPoints"
         - "&eOdds of winning: &f%odds%%"
         potionColor: GRAY
         price: 25000
         reward: 50000
         odds: 47.50
         rewardCommands:
-        - "broadcast &c%player% &fhas won &c$%reward% &ffrom the GambleBar!"
+        - "broadcast &c%player% &fhas won &c%reward% &fPlayerPoints from the GambleBar!"
       5:
         name: "&c&lTruly"
         lore:
         - "&c&lClick to buy for a chance to win!"
-        - "&ePrice: &f$%price%"
-        - "&eReward: &f$%reward%"
+        - "&ePrice: &f%price% &ePlayerPoints"
+        - "&eReward: &f%reward% &ePlayerPoints"
         - "&eOdds of winning: &f%odds%%"
         potionColor: BLUE
         price: 50000
         reward: 100000
         odds: 47.50
         rewardCommands:
-        - "broadcast &c%player% &fhas won &c$%reward% &ffrom the GambleBar!"
+        - "broadcast &c%player% &fhas won &c%reward% &fPlayerPoints from the GambleBar!"
       6:
         name: "&c&lRiesling"
         lore:
         - "&c&lClick to buy for a chance to win!"
-        - "&ePrice: &f$%price%"
-        - "&eReward: &f$%reward%"
+        - "&ePrice: &f%price% &ePlayerPoints"
+        - "&eReward: &f%reward% &ePlayerPoints"
         - "&eOdds of winning: &f%odds%%"
         potionColor: GREEN
         price: 100000
         reward: 200000
         odds: 45.00
         rewardCommands:
-        - "broadcast &c%player% &fhas won &c$%reward% &ffrom the GambleBar!"
+        - "broadcast &c%player% &fhas won &c%reward% &fPlayerPoints from the GambleBar!"
       7:
         name: "&c&lChardonnay"
         lore:
         - "&c&lClick to buy for a chance to win!"
-        - "&ePrice: &f$%price%"
-        - "&eReward: &f$%reward%"
+        - "&ePrice: &f%price% &ePlayerPoints"
+        - "&eReward: &f%reward% &ePlayerPoints"
         - "&eOdds of winning: &f%odds%%"
         potionColor: ORANGE
         price: 200000
         reward: 400000
         odds: 45.00
         rewardCommands:
-        - "broadcast &c%player% &fhas won &c$%reward% &ffrom the GambleBar!"
+        - "broadcast &c%player% &fhas won &c%reward% &fPlayerPoints from the GambleBar!"
       8:
         name: "&c&lSyrah"
         lore:
         - "&c&lClick to buy for a chance to win!"
-        - "&ePrice: &f$%price%"
-        - "&eReward: &f$%reward%"
+        - "&ePrice: &f%price% &ePlayerPoints"
+        - "&eReward: &f%reward% &ePlayerPoints"
         - "&eOdds of winning: &f%odds%%"
         potionColor: ORANGE
         price: 400000
         reward: 800000
         odds: 45.00
         rewardCommands:
-        - "broadcast &c%player% &fhas won &c$%reward% &ffrom the GambleBar!"
+        - "broadcast &c%player% &fhas won &c%reward% &fPlayerPoints from the GambleBar!"
       9:
         name: "&c&lBacardi"
         lore:
         - "&c&lClick to buy for a chance to win!"
-        - "&ePrice: &f$%price%"
-        - "&eReward: &f$%reward%"
+        - "&ePrice: &f%price% &ePlayerPoints"
+        - "&eReward: &f%reward% &ePlayerPoints"
         - "&eOdds of winning: &f%odds%%"
         potionColor: GREEN
         price: 600000
         reward: 1200000
         odds: 42.50
         rewardCommands:
-        - "broadcast &c%player% &fhas won &c$%reward% &ffrom the GambleBar!"
+        - "broadcast &c%player% &fhas won &c%reward% &fPlayerPoints from the GambleBar!"
       10:
         name: "&c&lCaptain Morgan"
         lore:
         - "&c&lClick to buy for a chance to win!"
-        - "&ePrice: &f$%price%"
-        - "&eReward: &f$%reward%"
+        - "&ePrice: &f%price% &ePlayerPoints"
+        - "&eReward: &f%reward% &ePlayerPoints"
         - "&eOdds of winning: &f%odds%%"
         potionColor: AQUA
         price: 800000
         reward: 1600000
         odds: 42.50
         rewardCommands:
-        - "broadcast &c%player% &fhas won &c$%reward% &ffrom the GambleBar!"
+        - "broadcast &c%player% &fhas won &c%reward% &fPlayerPoints from the GambleBar!"
       11:
         name: "&c&lSvedka"
         lore:
         - "&c&lClick to buy for a chance to win!"
-        - "&ePrice: &f$%price%"
-        - "&eReward: &f$%reward%"
+        - "&ePrice: &f%price% &ePlayerPoints"
+        - "&eReward: &f%reward% &ePlayerPoints"
         - "&eOdds of winning: &f%odds%%"
         potionColor: BLUE
         price: 1000000
         reward: 2000000
         odds: 40.00
         rewardCommands:
-        - "broadcast &c%player% &fhas won &c$%reward% &ffrom the GambleBar!"
+        - "broadcast &c%player% &fhas won &c%reward% &fPlayerPoints from the GambleBar!"
       12:
         name: "&c&lGrey Goose"
         lore:
         - "&c&lClick to buy for a chance to win!"
-        - "&ePrice: &f$%price%"
-        - "&eReward: &f$%reward%"
+        - "&ePrice: &f%price% &ePlayerPoints"
+        - "&eReward: &f%reward% &ePlayerPoints"
         - "&eOdds of winning: &f%odds%%"
         potionColor: ORANGE
         price: 1500000
         reward: 3000000
         odds: 40.00
         rewardCommands:
-        - "broadcast &c%player% &fhas won &c$%reward% &ffrom the GambleBar!"
+        - "broadcast &c%player% &fhas won &c%reward% &fPlayerPoints from the GambleBar!"
       13:
         name: "&c&lBusch Light"
         lore:
         - "&c&lClick to buy for a chance to win!"
-        - "&ePrice: &f$%price%"
-        - "&eReward: &f$%reward%"
+        - "&ePrice: &f%price% &ePlayerPoints"
+        - "&eReward: &f%reward% &ePlayerPoints"
         - "&eOdds of winning: &f%odds%%"
         potionColor: PURPLE
         price: 2000000
         reward: 4000000
         odds: 37.50
         rewardCommands:
-        - "broadcast &c%player% &fhas won &c$%reward% &ffrom the GambleBar!"
+        - "broadcast &c%player% &fhas won &c%reward% &fPlayerPoints from the GambleBar!"
 ```
 
 ### messages.yml
@@ -554,17 +562,37 @@ openedBar: "&eYou've opened a GambleBar!"
 # %drink% = drink name, %price% = drink's price
 boughtDrink: "&fYou've bought a &c%drink% &ffor &c$%price%&f."
 
+# Sent to a player when they buy a drink with PlayerPoints
+# %drink% = drink name, %price% = drink's price
+boughtDrinkPP: "&fYou've bought a &c%drink% &ffor &c%price% &fpoints."
+
 # Sent when a player doesn't have enough money to buy a drink
 # %drink% = drink name, %price% = drink's price
 insufficientFunds: "&cSorry, you can't afford the &f$%price% &cfor a &f%drink%&c."
 
+# Sent when a player doesn't have enough PlayerPoints to buy a drink
+# %drink% = drink name, %price% = drink's price
+insufficientFundsPP: "&cSorry, you can't afford the &f%price% &cpoints for a &f%drink%&c."
+
 # Sent when a player wins a drink
 # %reward% = the amount of $ won
-drinkWin: "&eYou've won &f$%reward% &efrom winning the drink!"
+# %drink% = the name of the drink won
+drinkWin: "&eYou've won &f$%reward% &efrom winning a &f%drink%&e!"
+
+# Sent when a player wins a drink with PlayerPoints
+# %reward% = the amount of $ won
+# %drink% = the name of the drink won
+drinkWinPP: "&eYou've won &f%reward% &epoints from winning a &f%drink%&e!"
 
 # Sent when a player has a super lucky win
 # %reward% = the amount of $ won
-luckyDrinkWin: "&eYou've got super lucky and won &f$%reward% &efrom winning the drink!"
+# %drink% = the name of the drink won
+luckyDrinkWin: "&eYou've got super lucky and won &f$%reward% &efrom winning a &f%drink%&e!"
+
+# Sent when a player has a super lucky win with PlayerPoints
+# %reward% = the amount of $ won
+# %drink% = the name of the drink won
+luckyDrinkWinPP: "&eYou've got super lucky and won &f%reward% &epoints from winning a &f%drink%&e!"
 
 # Sent to a player when they lose the drink
 drinkLose: "&cYou've lost your drink and feel the effects!"
@@ -633,17 +661,17 @@ If using this plugin on a 1.8.x server, there will be a villagers.yml file, this
 
 Want to change the sound effects from this plugin? Find more here!
 1.8.x Servers: https://helpch.at/docs/1.8.8/org/bukkit/Sound.html
-1.11.x - 1.19 Servers: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+1.11+ Servers: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
 
 If you experience an error after changing either of the config files, considering using an online yml validator tool. (For some reason, there is a formatting issue where the first line of the item lores are improperly indented on this web page, but it is not an issue in the default files.)
 
 ![Dependencies](https://i.imgur.com/WWvjJBu.png)
 
-GambleBarPro requires that you have the Vault plugin installed on your server. [Download Vault here](https://www.spigotmc.org/resources/vault.34315/). You must also be using an economy plugin that is compatible with Vault.(EssentialsX, for example. [Full list of compatible economy plugins found here](https://www.spigotmc.org/resources/vault.34315/).)
+GambleBarPro requires that you have either the Vault plugin or PlayerPoints installed on your server. [Download Vault here](https://www.spigotmc.org/resources/vault.34315/). [Download PlayerPoints here](https://www.spigotmc.org/resources/playerpoints.80745/). If you are using Vault you must also be using an economy plugin that is compatible with Vault. (EssentialsX, for example. [Full list of compatible economy plugins found here](https://www.spigotmc.org/resources/vault.34315/).)
 
 ![Compatibility](https://i.imgur.com/rORu9Yw.png)
 
-In order for this plugin to work correctly, you must be using Java Version 8+ and using one of the following minecraft server versions
+In order for this plugin to work correctly, you must be using Java Version 11+ and using one of the following minecraft server versions
 
 - 1.8.3
 - 1.8.8
@@ -657,5 +685,6 @@ In order for this plugin to work correctly, you must be using Java Version 8+ an
 - 1.17.x
 - 1.18.x
 - 1.19.x
+- 1.20.x
 
 For MC 1.8.3 - 1.8.9: It is worth noting that there is a small difference in this plugin for MC 1.8.x. When a Gambler villager is spawned, there will be an invisible armor stand spawned underneath them. This is simply to keep the villager in place. For this reason, you may run into issues if you spawn a gambler villager with only 1 block of depth underneath it. You may need to have 2 blocks placed directly underneath the villager, so that they will stay still.
