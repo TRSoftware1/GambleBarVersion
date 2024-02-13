@@ -50,8 +50,7 @@ Commands start with /gamblebar, but /bar and /gamble may be used instead.
 
 ![Configuration Files](https://i.imgur.com/EktO3iP.png)
 
-### config.yml
-```# Here are the valid colors for the "potionColor" options for the 1.11+ version
+#### Here are the valid colors for the "potionColor" options for the 1.11+ version
 # RED
 # BLUE
 # AQUA
@@ -113,6 +112,9 @@ loseSound: ENTITY_PLAYER_HURT
 blacklistWorlds:
 - "world_nether"
 - "test_world"
+
+# Set this to true if you want bars to auto-close after drink purchase.
+autoCloseBar: true
 
 # This is the default economy plugin bars will use unless specified in the bar's configuration
 # Options: Vault, PlayerPoints
@@ -199,6 +201,8 @@ bars:
         - "&#00bdf7Price: &f$%price%"
         - "&#00a1f7Reward: &f$%reward%"
         - "&#007cf7Odds of winning: &f%odds%%"
+        - "&#00a1f7Super Lucky Reward: &f$%superLuckyReward%"
+        - "&#007cf7Odds of winning: &f%superLuckyOdds%%"
         customModelData: 1
         potionColor: BLUE
         price: 500
@@ -217,6 +221,8 @@ bars:
         - "&#00bdf7Price: &f$%price%"
         - "&#00a1f7Reward: &f$%reward%"
         - "&#007cf7Odds of winning: &f%odds%%"
+        - "&#00a1f7Super Lucky Reward: &f$%superLuckyReward%"
+        - "&#007cf7Odds of winning: &f%superLuckyOdds%%"
         customModelData: 2
         potionColor: PURPLE
         price: 1000
@@ -235,6 +241,8 @@ bars:
         - "&#00bdf7Price: &f$%price%"
         - "&#00a1f7Reward: &f$%reward%"
         - "&#007cf7Odds of winning: &f%odds%%"
+        - "&#00a1f7Super Lucky Reward: &f$%superLuckyReward%"
+        - "&#007cf7Odds of winning: &f%superLuckyOdds%%"
         customModelData: 3
         potionColor: GREEN
         price: 5000
@@ -253,6 +261,8 @@ bars:
         - "&#00bdf7Price: &f$%price%"
         - "&#00a1f7Reward: &f$%reward%"
         - "&#007cf7Odds of winning: &f%odds%%"
+        - "&#00a1f7Super Lucky Reward: &f$%superLuckyReward%"
+        - "&#007cf7Odds of winning: &f%superLuckyOdds%%"
         customModelData: 4
         potionColor: GRAY
         price: 10000
@@ -271,6 +281,8 @@ bars:
         - "&#00bdf7Price: &f$%price%"
         - "&#00a1f7Reward: &f$%reward%"
         - "&#007cf7Odds of winning: &f%odds%%"
+        - "&#00a1f7Super Lucky Reward: &f$%superLuckyReward%"
+        - "&#007cf7Odds of winning: &f%superLuckyOdds%%"
         customModelData: 5
         potionColor: ORANGE
         price: 25000
@@ -289,6 +301,8 @@ bars:
         - "&#00bdf7Price: &f$%price%"
         - "&#00a1f7Reward: &f$%reward%"
         - "&#007cf7Odds of winning: &f%odds%%"
+        - "&#00a1f7Super Lucky Reward: &f$%superLuckyReward%"
+        - "&#007cf7Odds of winning: &f%superLuckyOdds%%"
         customModelData: 6
         potionColor: PURPLE
         price: 50000
@@ -307,6 +321,8 @@ bars:
         - "&#00bdf7Price: &f$%price%"
         - "&#00a1f7Reward: &f$%reward%"
         - "&#007cf7Odds of winning: &f%odds%%"
+        - "&#00a1f7Super Lucky Reward: &f$%superLuckyReward%"
+        - "&#007cf7Odds of winning: &f%superLuckyOdds%%"
         customModelData: 7
         potionColor: BLUE
         price: 100000
