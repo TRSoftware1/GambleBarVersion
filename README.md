@@ -51,6 +51,7 @@ Commands start with /gamblebar, but /bar and /gamble may be used instead.
 ![Configuration Files](https://i.imgur.com/EktO3iP.png)
 
 ### config.yml
+```
 # Here are the valid colors for the "potionColor" options for the 1.11+ version
 # RED
 # BLUE
