@@ -21,8 +21,9 @@
 - Command auto-tab completions.
 - Custom model data support for GambleBar Drinks. An example texture pack using custom models (1-7) can be [downloaded here.](https://drive.google.com/file/d/1OyHlkO54rCZIZk66_AYgTO_7o3gA3F1d/view?usp=share_link)
 - PlayerPoints support. Each bar can use either Vault or PlayerPoints for its drinks.
+- Cooldown options for drinks. Cooldowns can be for ANY & all drinks, or you can have the cooldowns apply to each drink individually. Cooldown times also persist through server restarts.
 
-![Feature List](https://i.imgur.com/z3tPNRH.png)
+![Feature List](https://i.imgur.com/sxgNjgm.png)
 
 ![Commands](https://i.imgur.com/X2goPrL.png)
 
@@ -95,6 +96,13 @@ drunkEffect: 10
 # This number is how many seconds the blindness effect lasts when a player loses a drink.
 # Set to 0 to disable.
 blindnessEffect: 10
+
+# Set this to true if you want the GambleBar cooldown to apply to each drink individually
+# Leave it as false if you want the cooldown to apply to ANY/ALL drinks the same.
+individualCooldown: false
+
+# This number is how many seconds the cooldown is between a player consuming a GambleBar drink
+cooldownSeconds: 300
 
 # Set this to false to disable sound effects
 # If using 1.8.x server, view sound options here: https://helpch.at/docs/1.8.8/org/bukkit/Sound.html
@@ -656,6 +664,9 @@ updateNeeded: "\n&b&lGambleBarPro &f- Version &c%newVersion% &fis out - you are 
 
 # Sent when a player tries to consume a drink in a blacklisted world
 blacklistedWorld: "&c&lSorry&7, you cannot gamble in this world!"
+
+# Sent when a player tries to consume a drink but they are on cooldown
+cooldownMessage: "&c&lSorry&7, you cannot drink this for another &c%time%&7."
 
 # The help menu sent to server admins with "gamblebar.admin.help"
 adminHelp:
